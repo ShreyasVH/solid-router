@@ -1,15 +1,16 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
-import { Router, useRoutes } from "@solidjs/router";
+import { Router, Route } from "@solidjs/router";
 import routes from './routes';
 
 const root = document.getElementById('root')
 
 render(() => {
-    const Routes = useRoutes(routes);
     return (
         <Router>
-            <Routes />
+            <For each={routes}>{route =>
+                <Route path={route.path} component={route.component} />
+            }</For>
         </Router>
     )
 }, root)
